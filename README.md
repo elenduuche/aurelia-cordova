@@ -54,9 +54,6 @@ To build the code, follow these steps.
   cordova run [SupportedPlatform eg: android] [Optional: --device]
   ```
   
-  ##Known Issues
-  * This application does not make the Cordova Plugins available to Aurelia.  I am trying to work out how to import them currently.  Once I get that done I will update the documentation for adding plugins to Cordova and how to make them available for consumption by Aurelia.  If you know how to do this already please feel free to make a pull request and let's get that baked in.
-  
   
   
   
