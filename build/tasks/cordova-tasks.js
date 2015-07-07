@@ -1,10 +1,11 @@
 var gulp = require('gulp');
 var runSequence = require('run-sequence');
+var gulpif = require('gulp-if');
 var shell = require('gulp-shell');
 var paths = require('../paths');
 var cordovaPaths = require('../cordova-paths');
+var os = require('os');
 
-// copy index.html to www
 gulp.task('copy-index', shell.task([
   'cp index.html www/index.html'
 ]))
@@ -41,13 +42,12 @@ gulp.task('copy-styles', shell.task([
   'cp -R styles www'
 ]))
 
+var isMyHost = (os.hostname = "atxcode001") ? true : false;
+
 // copy www to demos.atxcode.com/apps/aurelia-cordova
-gulp.task('copy-demo', shell.task([
-	'cp -R www /var/www/html/demos/aurelia-cordova/'
-	
-	// TODO: Can't figure this out.
-	//'[[ $(hostname) = "atxcode001" ]] && cp -R www /var/www/html/demos/aurelia-cordova/'
-]))
+gulp.task('copy-demo', function() {
+	return gulp.src('./www/**/*')
+	  .pipe(gulpif(isMyHost, gulp.dest('/var/www/html/demos/aurelia-cordova/www/')))});
 
 gulp.task('build-cordova', function() {
   return runSequence(
