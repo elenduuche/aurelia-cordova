@@ -41,9 +41,16 @@ gulp.task('copy-styles', shell.task([
   'cp -R styles www'
 ]))
 
+// copy www to demos.atxcode.com/apps/aurelia-cordova
+gulp.task('copy-demo', shell.task([
+	'cp -R www /var/www/html/demos/aurelia-cordova/'
+	
+	// TODO: Can't figure this out.
+	//'[[ $(hostname) = "atxcode001" ]] && cp -R www /var/www/html/demos/aurelia-cordova/'
+]))
 
 gulp.task('build-cordova', function() {
   return runSequence(
-    ['copy-index', 'copy-jspm', 'copy-package-json', 'copy-config-js', 'copy-favicon', 'copy-protractor', 'copy-styles']
+    ['copy-index', 'copy-jspm', 'copy-package-json', 'copy-config-js', 'copy-favicon', 'copy-protractor', 'copy-styles', 'copy-demo']
   );
 });
