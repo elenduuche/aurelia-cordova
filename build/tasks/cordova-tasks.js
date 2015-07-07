@@ -42,15 +42,18 @@ gulp.task('copy-styles', shell.task([
   'cp -R styles www'
 ]))
 
-var isMyHost = (os.hostname = "atxcode001") ? true : false;
+
+/* For use on my production server.  Auto publishes app to my demos folder */
+//var isMyHost = (os.hostname = "atxcode001") ? true : false;
 
 // copy www to demos.atxcode.com/apps/aurelia-cordova
-gulp.task('copy-demo', function() {
-	return gulp.src('./www/**/*')
-	  .pipe(gulpif(isMyHost, gulp.dest('/var/www/html/demos/aurelia-cordova/www/')))});
+//gulp.task('copy-demo', function() {
+//	return gulp.src('./www/**/*')
+//	  .pipe(gulpif(isMyHost, gulp.dest('/var/www/html/demos/aurelia-cordova/www/')))});
+//
 
 gulp.task('build-cordova', function() {
   return runSequence(
-    ['copy-index', 'copy-jspm', 'copy-package-json', 'copy-config-js', 'copy-favicon', 'copy-protractor', 'copy-styles', 'copy-demo']
+    ['copy-index', 'copy-jspm', 'copy-package-json', 'copy-config-js', 'copy-favicon', 'copy-protractor', 'copy-styles'] //, 'copy-demo'
   );
 });
